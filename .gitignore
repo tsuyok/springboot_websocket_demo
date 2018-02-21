@@ -1,0 +1,30 @@
+# For idea
+**/out
+.idea
+*.iml
+*.ipr
+*.iws
+
+# For Gradle
+**/build
+build/**
+.gradle
+
+# For astah
+*.lock
+
+# For local
+temp
+*.log
+
+# For mac
+.DS_Store
+
+# backup files
+*.un~
+
+# log files
+*.log
+
+# resource sample file
+**/resources/config/application.yml
