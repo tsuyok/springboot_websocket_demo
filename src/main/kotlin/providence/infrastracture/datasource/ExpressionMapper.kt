@@ -15,7 +15,7 @@ interface ExpressionMapper {
     fun insert(expression: Expression)
 
     @Select("""
-        SELECT count(*)
+        SELECT COUNT(DISTINCT uid)
         FROM expression
         WHERE unixtime = #{time}
         """
@@ -23,9 +23,10 @@ interface ExpressionMapper {
     fun count(time: Long): Int
 
     @Select("""
-        SELECT expression
+        SELECT MIN(expression)
         FROM expression
         WHERE unixtime = #{time}
+        GROUP BY uid
         ORDER BY uid
         """
     )
