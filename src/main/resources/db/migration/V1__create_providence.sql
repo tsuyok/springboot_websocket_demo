@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS loudness (
   id            INT(11)      NOT NULL AUTO_INCREMENT,
   uid           INT(11)      NOT NULL COMMENT 'ユーザID',
-  unixtime      INT(11)      NOT NULL COMMENT 'UNIX時間',
+  unixtime      BIGINT       NOT NULL COMMENT 'UNIX時間',
   loudness      INT(11)      NOT NULL COMMENT '声の大きさ',
   created_at    TIMESTAMP DEFAULT current_timestamp() COMMENT 'レコードの作成日時',
   PRIMARY KEY (id),
@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS loudness (
 CREATE TABLE IF NOT EXISTS expression (
   id            INT(11)      NOT NULL AUTO_INCREMENT,
   uid           INT(11)      NOT NULL COMMENT 'ユーザID',
-  unixtime      INT(11)      NOT NULL COMMENT 'UNIX時間',
-  expression    INT(1)       NOT NULL COMMENT '表情（1〜7）',
+  unixtime      BIGINT       NOT NULL COMMENT 'UNIX時間',
+  expression    INT(1)       NOT NULL COMMENT '表情（0〜6）',
   created_at    TIMESTAMP DEFAULT current_timestamp() COMMENT 'レコードの作成日時',
   PRIMARY KEY (id),
   INDEX (uid, unixtime)
@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS expression (
 CREATE TABLE IF NOT EXISTS direction (
   id            INT(11)      NOT NULL AUTO_INCREMENT,
   uid           INT(11)      NOT NULL COMMENT 'ユーザID',
-  unixtime      INT(11)      NOT NULL COMMENT 'UNIX時間',
-  direction     INT(1)       NOT NULL COMMENT '向いている方向（1〜7）',
+  unixtime      BIGINT       NOT NULL COMMENT 'UNIX時間',
+  direction     INT(1)       NOT NULL COMMENT '向いている方向（0〜6）',
   created_at    TIMESTAMP DEFAULT current_timestamp() COMMENT 'レコードの作成日時',
   PRIMARY KEY (id),
   INDEX (uid, unixtime)

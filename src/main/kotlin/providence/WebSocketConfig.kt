@@ -12,7 +12,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 open class WebSocketConfig : AbstractWebSocketMessageBrokerConfigurer() {
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/providence").withSockJS()
+        registry.addEndpoint("/providence").setAllowedOrigins("*").withSockJS()
     }
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry?) {

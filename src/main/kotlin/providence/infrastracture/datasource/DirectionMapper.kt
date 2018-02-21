@@ -20,7 +20,7 @@ interface DirectionMapper {
         WHERE unixtime = #{time}
         """
     )
-    fun count(time: Int): Int
+    fun count(time: Long): Int
 
     @Select("""
         SELECT uid, unixtime as time, direction
@@ -29,6 +29,6 @@ interface DirectionMapper {
         ORDER BY uid
         """
     )
-    fun directions(time: Int): List<Direction>
+    fun directions(time: Long): List<Direction>
 
 }

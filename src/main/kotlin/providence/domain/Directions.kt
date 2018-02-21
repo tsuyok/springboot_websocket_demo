@@ -2,46 +2,46 @@ package providence.domain
 
 class Directions(val directions: List<Direction>){
 
-    val SeatingDirections = mapOf(
+    val SeatingDirections = mapOf<String, Long>(
             // 上を向いている
-            0 to mapOf(0 to 5),
-            1 to mapOf(0 to 5),
-            2 to mapOf(0 to 5),
-            3 to mapOf(0 to 5),
+            "0_0" to 5,
+            "1_0" to 5,
+            "2_0" to 5,
+            "3_0" to 5,
             // 下を向いている
-            0 to mapOf(1 to 4),
-            1 to mapOf(1 to 4),
-            2 to mapOf(1 to 4),
-            3 to mapOf(1 to 4),
+            "0_1" to 4,
+            "1_1" to 4,
+            "2_1" to 4,
+            "3_1" to 4,
             // 左を向いている
-            0 to mapOf(2 to 1),
-            1 to mapOf(2 to 6),
-            2 to mapOf(2 to 6),
-            3 to mapOf(2 to 2),
+            "0_2" to 1,
+            "1_2" to 6,
+            "2_2" to 6,
+            "3_2" to 2,
             // 左前を向いている
-            0 to mapOf(3 to 3),
-            1 to mapOf(3 to 6),
-            2 to mapOf(3 to 6),
-            3 to mapOf(3 to 9),
+            "0_3" to 3,
+            "1_3" to 6,
+            "2_3" to 6,
+            "3_3" to 9,
             // 前を向いている
-            0 to mapOf(4 to 2),
-            1 to mapOf(4 to 3),
-            2 to mapOf(4 to 0),
-            3 to mapOf(4 to 1),
+            "0_4" to 2,
+            "1_4" to 3,
+            "2_4" to 0,
+            "3_4" to 1,
             // 右前を向いている
-            0 to mapOf(5 to 6),
-            1 to mapOf(5 to 2),
-            2 to mapOf(5 to 1),
-            3 to mapOf(5 to 6),
+            "0_5" to 6,
+            "1_5" to 2,
+            "2_5" to 1,
+            "3_5" to 6,
             // 右を向いている
-            0 to mapOf(6 to 6),
-            1 to mapOf(6 to 0),
-            2 to mapOf(6 to 3),
-            3 to mapOf(6 to 6)
+            "0_6" to 6,
+            "1_6" to 0,
+            "2_6" to 3,
+            "3_6" to 6
     )
 
-    fun direction(): List<Int?> {
-        return listOf(0,1,1,1)
+    fun direction(): List<Long?> {
+        return directions.map { SeatingDirections["${it.uid}_${it.direction}"] }
     }
 
     fun nod(): IntArray{

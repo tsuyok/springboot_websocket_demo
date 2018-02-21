@@ -7,13 +7,14 @@ import providence.infrastracture.datasource.DirectionMapper
 import providence.infrastracture.datasource.ExpressionMapper
 import providence.infrastracture.datasource.LoudnessMapper
 import providence.domain.State
+import providence.exception.SeatingDataException
 
 @Component
 class ProvidenceApptication(@Autowired private val loudnessMapper: LoudnessMapper,
                             @Autowired private val expressionMapper: ExpressionMapper,
                             @Autowired private val directionMapper: DirectionMapper
                             ) {
-    fun state(time: Int) : State {
+    fun state(time: Long) : State {
         // 数を取得する
         val loudnessCount = loudnessMapper.count(time)
         val emotionalCount = expressionMapper.count(time)
@@ -21,7 +22,7 @@ class ProvidenceApptication(@Autowired private val loudnessMapper: LoudnessMappe
 
         // 4人そろっていなければException。打算的方法。
         if(loudnessCount != 4 || emotionalCount != 4 || directionCount != 4)
-            throw RuntimeException("データが揃ってないのでここで終了")
+            throw SeatingDataException("データが揃ってないのでここで終了")
 
         /* 4人揃っていれば情報を返す */
         val talking: Int = loudnessMapper.talking(time);

@@ -20,7 +20,7 @@ interface LoudnessMapper {
         WHERE unixtime = #{time}
         """
     )
-    fun count(time: Int): Int
+    fun count(time: Long): Int
 
     // 最大が重なった場合は考慮していないよ
     @Select("""
@@ -30,6 +30,6 @@ interface LoudnessMapper {
           AND loudness = (SELECT MAX(loudness) FROM loudness WHERE unixtime = #{time})
         """
     )
-    fun talking(time: Int): Int
+    fun talking(time: Long): Int
 
 }

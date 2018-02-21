@@ -13,6 +13,7 @@ import providence.infrastracture.datasource.LoudnessMapper
 import providence.domain.Direction
 import providence.domain.Expression
 import providence.domain.State
+import providence.exception.SeatingDataException
 
 
 @Controller
@@ -60,5 +61,10 @@ class ProvidenceController(@Autowired private val loudnessMapper: LoudnessMapper
     @MessageExceptionHandler
     fun handleException(exception: Throwable) {
         // 一旦何もしない。ホントはだめだけど
+        if(exception is SeatingDataException){
+            println("データが揃っていない")
+            return
+        }
+        throw exception
     }
 }

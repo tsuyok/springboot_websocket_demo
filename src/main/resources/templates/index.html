@@ -15,7 +15,7 @@
         }
 
         function connect() {
-            var socket = new SockJS('/providence'); // WebSocketに接続
+            var socket = new SockJS('http://192.168.1.68:8080/providence'); // WebSocketに接続
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 setConnected(true);

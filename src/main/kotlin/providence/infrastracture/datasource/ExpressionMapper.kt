@@ -9,7 +9,7 @@ import providence.domain.Expression
 interface ExpressionMapper {
     @Insert("""
         INSERT INTO expression (uid, unixtime, expression, created_at) VALUES
-        (#{uid}, #{time}, #{emotional}, now())
+        (#{uid}, #{time}, #{expression}, now())
         """
     )
     fun insert(expression: Expression)
@@ -20,7 +20,7 @@ interface ExpressionMapper {
         WHERE unixtime = #{time}
         """
     )
-    fun count(time: Int): Int
+    fun count(time: Long): Int
 
     @Select("""
         SELECT expression
@@ -29,6 +29,6 @@ interface ExpressionMapper {
         ORDER BY uid
         """
     )
-    fun expression(time: Int): IntArray
+    fun expression(time: Long): IntArray
 
 }
