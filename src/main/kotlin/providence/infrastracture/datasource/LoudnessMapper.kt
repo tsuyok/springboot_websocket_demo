@@ -15,7 +15,7 @@ interface LoudnessMapper {
     fun insert(loudness: Loudness)
 
     @Select("""
-        SELECT count(*)
+        SELECT COUNT(DISTINCT uid)
         FROM loudness
         WHERE unixtime = #{time}
         """

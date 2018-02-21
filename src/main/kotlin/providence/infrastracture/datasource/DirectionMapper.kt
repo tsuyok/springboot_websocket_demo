@@ -15,7 +15,7 @@ interface DirectionMapper {
     fun insert(direction: Direction)
 
     @Select("""
-        SELECT count(*)
+        SELECT COUNT(DISTINCT uid)
         FROM direction
         WHERE unixtime = #{time}
         """
@@ -23,9 +23,10 @@ interface DirectionMapper {
     fun count(time: Long): Int
 
     @Select("""
-        SELECT uid, unixtime as time, direction
+        SELECT uid, unixtime as time, MIN(direction)
         FROM direction
         WHERE unixtime = #{time}
+        GROUP BY uid
         ORDER BY uid
         """
     )
