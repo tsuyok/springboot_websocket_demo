@@ -23,12 +23,13 @@ interface LoudnessMapper {
     fun count(time: Long): Int
 
     @Select("""
-        SELECT MAX(uid)
+        SELECT MAX(uid), MAX(unixtime), MAX(loudness)
         FROM loudness
         WHERE unixtime = #{time}
           AND loudness = (SELECT MAX(loudness) FROM loudness WHERE unixtime = #{time})
+        LIMIT 1
         """
     )
-    fun talking(time: Long): Int
+    fun talking(time: Long): Loudness
 
 }
