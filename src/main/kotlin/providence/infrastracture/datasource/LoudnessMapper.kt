@@ -22,13 +22,11 @@ interface LoudnessMapper {
     )
     fun count(time: Long): Int
 
-    // 最大が重なった場合は考慮していないよ
     @Select("""
-        SELECT uid, unixtime, loudness
+        SELECT MAX(uid), MAX(unixtime), MAX(loudness)
         FROM loudness
         WHERE unixtime = #{time}
           AND loudness = (SELECT MAX(loudness) FROM loudness WHERE unixtime = #{time})
-        ORDER BY loudness
         LIMIT 1
         """
     )
