@@ -3,6 +3,7 @@ package providence.application
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import providence.domain.Directions
+import providence.domain.Loudness
 import providence.infrastracture.datasource.DirectionMapper
 import providence.infrastracture.datasource.ExpressionMapper
 import providence.infrastracture.datasource.LoudnessMapper
@@ -25,7 +26,11 @@ class ProvidenceApptication(@Autowired private val loudnessMapper: LoudnessMappe
             throw SeatingDataException("データが揃ってないのでここで終了")
 
         /* 4人揃っていれば情報を返す */
-        val talking: Int = loudnessMapper.talking(time);
+        val loudness: Loudness = loudnessMapper.talking(time);
+
+        var talking = loudness.uid;
+        if (loudness.loudness == 0)
+            talking = 4;
 
         val expression: IntArray = expressionMapper.expression(time)
 

@@ -24,12 +24,14 @@ interface LoudnessMapper {
 
     // 最大が重なった場合は考慮していないよ
     @Select("""
-        SELECT uid
+        SELECT uid, unixtime, loudness
         FROM loudness
         WHERE unixtime = #{time}
           AND loudness = (SELECT MAX(loudness) FROM loudness WHERE unixtime = #{time})
+        ORDER BY loudness
+        LIMIT 1
         """
     )
-    fun talking(time: Long): Int
+    fun talking(time: Long): Loudness
 
 }
